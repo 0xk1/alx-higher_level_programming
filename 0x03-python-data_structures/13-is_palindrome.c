@@ -9,8 +9,7 @@
 int is_palindrome(listint_t **head)
 {
 	listint_t *slow, *fast;
-	int *ints;
-	int i;
+	int *ints, i;
 
 	slow = *head;
 	fast = *head;
@@ -26,10 +25,9 @@ int is_palindrome(listint_t **head)
 		i++;
 	}
 
-	ints = malloc(sizeof(int) * i + 1);
+	ints = malloc(sizeof(int) * i);
 	if (!ints)
 		return (0);
-
 	i = 0;
 	while (slow)
 	{
@@ -41,11 +39,13 @@ int is_palindrome(listint_t **head)
 	while (slow && i >= 0)
 	{
 		if (slow->n != ints[i])
+		{
+			free(ints);
 			return (0);
+		}
 		i--;
 		slow = slow->next;
 	}
 	free(ints);
 	return (1);
-
 }
