@@ -13,7 +13,6 @@ int is_palindrome(listint_t **head)
 
 	slow = *head;
 	fast = *head;
-
 	if (!*head || !(*head)->next)
 		return (1);
 
@@ -24,7 +23,8 @@ int is_palindrome(listint_t **head)
 		fast = fast->next->next;
 		i++;
 	}
-	i++;
+	if (fast)
+		i++;
 	ints = malloc(sizeof(int) * i);
 	if (!ints)
 		return (0);
