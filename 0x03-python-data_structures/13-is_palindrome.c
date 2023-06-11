@@ -15,7 +15,7 @@ int is_palindrome(listint_t **head)
 	slow = *head;
 	fast = *head;
 
-	if (!head)
+	if (!*head || !(*head)->next)
 		return (1);
 
 	i = 0;
@@ -33,9 +33,8 @@ int is_palindrome(listint_t **head)
 	i = 0;
 	while (slow)
 	{
-		ints[i] = slow->n;
+		ints[i++] = slow->n;
 		slow = slow->next;
-		i++;
 	}
 	i--;
 	slow = *head;
@@ -46,6 +45,7 @@ int is_palindrome(listint_t **head)
 		i--;
 		slow = slow->next;
 	}
+	free(ints);
 	return (1);
 
 }
